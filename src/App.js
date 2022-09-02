@@ -3,20 +3,18 @@ import {Block} from './Block';
 import './index.scss';
 
 function App() {
-    const [fromCurrency, setFromCurrency] = React.useState('RUB');
+    const [fromCurrency, setFromCurrency] = React.useState('UAH');
     const [toCurrency, setToCurrency] = React.useState('USD');
     const [fromPrice, setFromPrice] = React.useState(0);
     const [toPrice, setToPrice] = React.useState(1);
 
 
-    // const [rates, setRates] = React.useState({});
-    const ratesRef = React.useRef({});
+        const ratesRef = React.useRef({});
 
     React.useEffect(() => {
         fetch('https://cdn.cur.su/api/latest.json')
             .then((res) => res.json())
             .then((json) => {
-                // setRates(json.rates);
                 onChangeToPrice(1);
                 ratesRef.current = json.rates;
             }).catch(err => {
